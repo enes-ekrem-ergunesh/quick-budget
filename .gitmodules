@@ -1,0 +1,9 @@
+[submodule "database"]
+	path = database
+	url = https://github.com/enes-ekrem-ergunesh/quick-budget-database.git
+[submodule "backend"]
+	path = backend
+	url = https://github.com/enes-ekrem-ergunesh/quick-budget-backend.git
+[submodule "frontend"]
+	path = frontend
+	url = https://github.com/enes-ekrem-ergunesh/quick-budget-frontend.git
