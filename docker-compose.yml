@@ -1,0 +1,30 @@
+services:
+  db:
+    image: postgres:16.8-alpine
+    container_name: quick_budget_db
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "127.0.0.1:${POSTGRES_HOST_PORT:-5432}:5432"
+    networks:
+      - internal
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    labels:
+      - description="PostgreSQL database with persistent volume"
+
+networks:
+  public:
+    driver: bridge
+  internal:
+    driver: bridge
+
+volumes:
+  db_data:
